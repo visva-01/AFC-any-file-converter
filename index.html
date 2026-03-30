@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#123524">
+  <title>ConvertLab Offline</title>
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="page-shell">
+    <header class="hero">
+      <p class="eyebrow">Offline File Converter</p>
+      <h1>ConvertLab</h1>
+      <p class="lede">
+        Convert common files directly in your browser. Nothing leaves your device.
+      </p>
+      <div class="hero-notes">
+        <span>Works offline after first load</span>
+        <span>No uploads</span>
+        <span>Images + text formats included</span>
+      </div>
+    </header>
+
+    <main class="layout">
+      <section class="panel upload-panel">
+        <h2>Pick a File</h2>
+        <label class="dropzone" id="dropzone" for="fileInput">
+          <input id="fileInput" type="file">
+          <span class="drop-title">Drop a file here</span>
+          <span class="drop-subtitle">or click to browse from your device</span>
+        </label>
+
+        <div class="file-summary" id="fileSummary" hidden>
+          <h3>Selected File</h3>
+          <p id="fileName">No file selected</p>
+          <p id="fileMeta"></p>
+        </div>
+
+        <div class="support-card">
+          <h3>What this version supports</h3>
+          <ul>
+            <li>Image conversion: PNG, JPG, WEBP, SVG to browser-safe raster formats</li>
+            <li>Text export: TXT, MD, CSV, HTML, CSS, JS, XML</li>
+            <li>JSON formatting and export</li>
+            <li>Local preview for image and text files</li>
+          </ul>
+        </div>
+      </section>
+
+      <section class="panel convert-panel">
+        <h2>Convert</h2>
+        <div class="backend-chip" id="backendChip">Desktop helper: checking...</div>
+        <div class="field-group">
+          <label for="targetFormat">Output format</label>
+          <select id="targetFormat" disabled>
+            <option value="">Choose a file first</option>
+          </select>
+        </div>
+
+        <div class="field-group" id="qualityWrap" hidden>
+          <label for="qualityRange">Image quality</label>
+          <input id="qualityRange" type="range" min="0.4" max="1" step="0.05" value="0.92">
+          <div class="range-row">
+            <span>Smaller file</span>
+            <strong id="qualityLabel">92%</strong>
+            <span>Higher quality</span>
+          </div>
+        </div>
+
+        <button id="convertButton" class="primary-button" disabled>Convert File</button>
+        <a id="downloadLink" class="download-link" hidden download>Download converted file</a>
+
+        <div class="status-box" id="statusBox" aria-live="polite">
+          Select a file to begin.
+        </div>
+
+        <div class="limits-card">
+          <h3>Desktop mode</h3>
+          <p>
+            Office documents like PPT, PPTX, DOCX, and XLSX can be exported to PDF locally when
+            you run this app through the included Python desktop helper on a Windows machine with
+            Microsoft Office installed.
+          </p>
+          <p>
+            Simpler image and text conversions still run directly in the browser.
+          </p>
+        </div>
+      </section>
+
+      <section class="panel preview-panel">
+        <h2>Preview</h2>
+        <div id="previewArea" class="preview-area">
+          <p class="placeholder-copy">Your local preview will appear here.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <template id="imagePreviewTemplate">
+    <img class="preview-image" alt="Preview of selected file">
+  </template>
+
+  <template id="textPreviewTemplate">
+    <pre class="preview-text"></pre>
+  </template>
+
+  <script src="app.js" defer></script>
+</body>
+</html>
+
